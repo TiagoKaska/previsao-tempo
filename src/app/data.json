@@ -1,0 +1,29 @@
+{
+    "cidades":[
+        {"cidade": "Jaragua do Sul", "WOEID": 456283, "Estado": "SC"},
+        {"cidade": "Blumenau", "WOEID": 455846, "Estado": "SC"},
+        {"cidade": "Joinville", "WOEID": 455873, "Estado": "SC"},
+
+        {"cidade": "Rio de Janeiro,", "WOEID": 455825, "Estado": "RJ"},
+        {"cidade": "Angra dos Reis", "WOEID": 456038, "Estado": "RJ"},
+
+        {"cidade": "São Paulo", "WOEID": 455827, "Estado": "SP"},
+        {"cidade": "Guarulhos", "WOEID": 455867, "Estado": "SP"}
+        
+    ],
+    "estados": [
+        {"Sigla": "SC", "descricao": "Santa Catarina" },
+        {"Sigla": "RJ", "descricao": "Rio de Janeiro" },
+        {"Sigla": "SP", "descricao": "São Paulo" }
+        
+    ],
+
+    "diversao" : [
+        {"WOEID": 456283, "Boom": "Visitar o Parque da Malwe", "Ruim": "Ir ao Cinema" },
+        {"WOEID": 455846, "Boom": "Visitar o Parque Ramiro", "Ruim": "Ir ao Shoping" }
+    ]
+
+
+    
+
+}
