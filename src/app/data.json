@@ -12,15 +12,15 @@
         
     ],
     "estados": [
-        {"Sigla": "SC", "descricao": "Santa Catarina" },
-        {"Sigla": "RJ", "descricao": "Rio de Janeiro" },
-        {"Sigla": "SP", "descricao": "São Paulo" }
+        {"sigla": "SC", "descricao": "Santa Catarina" },
+        {"sigla": "RJ", "descricao": "Rio de Janeiro" },
+        {"sigla": "SP", "descricao": "São Paulo" }
         
     ],
 
     "diversao" : [
-        {"WOEID": 456283, "Boom": "Visitar o Parque da Malwe", "Ruim": "Ir ao Cinema" },
-        {"WOEID": 455846, "Boom": "Visitar o Parque Ramiro", "Ruim": "Ir ao Shoping" }
+        {"WOEID": 456283, "Bom": "Visitar o Parque da Malwe", "Ruim": "Ir ao Cinema" },
+        {"WOEID": 455846, "Bom": "Visitar o Parque Ramiro", "Ruim": "Ir ao Shoping" }
     ]
 
 

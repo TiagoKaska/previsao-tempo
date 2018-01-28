@@ -1,19 +1,66 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Previsão do Tempo em {{cidadeFavorita}}</span>
-  </mat-toolbar-row>
-  
-  <!--
-  <mat-toolbar-row>
-    <span>Second Line</span>
-      
-  </mat-toolbar-row>
--->
-  
+<mat-spinner mode="indeterminate" *ngIf="loading"></mat-spinner>
 
-
+<mat-toolbar color="primary" *ngIf="!loading">
+    
+  <mat-toolbar-row>
+    <span ng-if="cidadeFavorita">Previsão do Tempo em {{objCidadeSelecionada.city_name}}</span>
+  </mat-toolbar-row>
 </mat-toolbar>
-<mat-checkbox>Check me!</mat-checkbox>
 
 
+<mat-card>
+    
+    <mat-form-field *ngIf="estados">
+      <mat-select [(value)]="estadoSelecionado" placeholder="Estados" (change)="onChangeEstados(estadoSelecionado)">
+        <mat-option *ngFor="let estado of estados" [value]="estado.sigla">
+          {{ estado.descricao }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>  
+
+    <mat-form-field *ngIf="showCidadesAutoComplete">
+      <input matInput placeholder="Cidade" aria-label="Selecione uma Cidade" [matAutocomplete]="auto"  [(ngModel)]="cidadeSelecionada" [formControl]="cidadesCtrl"> 
+      <mat-autocomplete  #auto="matAutocomplete">
+        <mat-option *ngFor="let option of cidadesAutoComplete" [value]="option.cidade">
+          {{ option.cidade }}
+        </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>  
+
+  
+    <button mat-button color="primary" *ngIf="showCidadesAutoComplete" (click)="visualizaCidadeSelecionada()">Visualizar</button>
+  
+</mat-card>
+
+    
+<mat-card>
+   <mat-spinner mode="indeterminate" *ngIf="loadingCidade"></mat-spinner>
+   <mat-chip-list *ngIf="objCidadeSelecionada">
+      <mat-chip color="primary">Hoje é o dia {{objCidadeSelecionada.date}}</mat-chip>
+      <mat-chip color="primary"> A temperatura esta em {{objCidadeSelecionada.temp}} Graus</mat-chip>
+      <mat-chip color="primary">{{objCidadeSelecionada.description}}</mat-chip>
+      <mat-chip color="primary">Temperatura Máxima da Semana  {{getTemperaturaMaxima()}} graus</mat-chip>
+      <mat-chip color="primary">Temperatura Mínima da Semana  {{getTemperaturaMinima()}} graus</mat-chip>
+      
+    </mat-chip-list>
+
+      
+</mat-card>
+
+<mat-card>
+  Previsão do tempo Semanal temperatura
+    <mat-tab-group *ngIf="objCidadeSelecionada">
+        <div *ngFor="let dia of objCidadeSelecionada.forecast">
+          <mat-tab label={{dia.weekday}}>
+            <mat-card>
+              <h4 mat-line>{{dia.date}}</h4>
+              <p mat-line> {{dia.description}} </p>
+              <p mat-line> Temperatura Máxima  <mat-chip color="primary">{{dia.max}} Graus</mat-chip> Temperatura Mínima <mat-chip color="primary">{{dia.min}}</mat-chip></p>
+              <h4 mat-line *ngIf="eFinalSemana(dia)"> {{buscaDiversao(dia['condition']) || async }}  </h4>
+            </mat-card>
+          </mat-tab>
+        </div>  
+        </mat-tab-group> 
+
+</mat-card>
 
