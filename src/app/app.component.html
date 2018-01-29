@@ -29,13 +29,14 @@
 
   
     <button mat-button color="primary" *ngIf="showCidadesAutoComplete" (click)="visualizaCidadeSelecionada()">Visualizar</button>
-  
+    <button mat-button color="primary" *ngIf="showCidadesAutoComplete" (click)="setLocalFavorito()">Local Favorito</button>
+    
 </mat-card>
 
     
 <mat-card>
    <mat-spinner mode="indeterminate" *ngIf="loadingCidade"></mat-spinner>
-   <mat-chip-list *ngIf="objCidadeSelecionada">
+   <mat-chip-list *ngIf="!loadingCidade">
       <mat-chip color="primary">Hoje é o dia {{objCidadeSelecionada.date}}</mat-chip>
       <mat-chip color="primary"> A temperatura esta em {{objCidadeSelecionada.temp}} Graus</mat-chip>
       <mat-chip color="primary">{{objCidadeSelecionada.description}}</mat-chip>
@@ -64,3 +65,19 @@
 
 </mat-card>
 
+
+<mat-card *ngIf="showChart">
+    <div>
+        <div style="display: block">
+          <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+        </div>
+        
+      </div>
+</mat-card>
